@@ -10,20 +10,33 @@ public class Bullets : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
+	void OnCollisionEnter(Collider collider)
+	{
+		if (collider.tag == "Enemy") 
+		{
+			alive = false;
+			Destroy (collider.gameObject);
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
-        if (Lifetime > 0)
-        {
-            body.position += velocity * body.transform.forward * Time.fixedDeltaTime;
-            Lifetime -= Time.fixedDeltaTime;
-        }
-        else
-            alive = false;
-
-        if(!alive)
-        {
-            Destroy(this.gameObject);
-        }
+		if (alive) 
+		{
+			if (Lifetime > 0) 
+			{
+				body.position += velocity * body.transform.forward * Time.fixedDeltaTime;
+				Lifetime -= Time.fixedDeltaTime;
+			} 
+			else
+			{
+				alive = false;
+			}
+		}
+		else 
+		{
+			Destroy (this.gameObject);
+		}
 	}
 }

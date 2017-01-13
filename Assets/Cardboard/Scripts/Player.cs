@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
 	void Update () {
        
 	}
+	/*
     void OnGui()
     {
         for (int i = 0; i < Health; ++i)
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour {
             GUI.DrawTexture(new Rect(i * 64 + 10, 10, 64, 64), HealthIcon);
         }
     }
+    */
     void OnTriggerEnter(Collider other)
     {
         if(other.tag=="Enemy")
