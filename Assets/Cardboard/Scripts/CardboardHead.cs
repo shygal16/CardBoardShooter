@@ -38,11 +38,10 @@ public class CardboardHead : MonoBehaviour {
   /// orientation.  True means to update the gameobject's orientation with the
   /// user's head rotation, and false means don't modify the gameobject's orientation.
   public bool trackRotation = true;
-
   /// Determines whether to apply ther user's head offset to this gameobject's
   /// position.  True means to update the gameobject's position with the user's head offset,
   /// and false means don't modify the gameobject's position.
-  public bool trackPosition = true;
+  public bool trackPosition = false;
 
   /// The user's head motion will be applied in this object's reference frame
   /// instead of the head object's parent.  A good use case is for head-based
@@ -63,7 +62,7 @@ public class CardboardHead : MonoBehaviour {
   /// phase, will update the head object first on some frames but second on others.
   /// If this is the case for your game, try switching the head to apply head tracking
   /// during `Update()` by setting this to true.
-  public bool updateEarly = false;
+  public bool updateEarly = true;
 
   /// Returns a ray based on the heads position and forward direction, after making
   /// sure the transform is up to date.  Use to raycast into the scene to determine

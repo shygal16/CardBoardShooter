@@ -69,10 +69,11 @@ public class CardboardReticle : MonoBehaviour, ICardboardGazePointer {
       GazeInputModule.cardboardPointer = null;
     }
   }
-
-  void Update() {
+    private float TimeSinceFire=0;
+    void Update() {
     UpdateDiameters();
-  }
+        TimeSinceFire += Time.deltaTime;
+    }
 
   /// This is called when the 'BaseInputModule' system should be enabled.
   public void OnGazeEnabled() {
@@ -118,16 +119,23 @@ public class CardboardReticle : MonoBehaviour, ICardboardGazePointer {
     reticleInnerAngle = kReticleMinInnerAngle;
     reticleOuterAngle = kReticleMinOuterAngle;
   }
-
+    public Rigidbody bullet;
   /// Called when the Cardboard trigger is initiated. This is practically when
   /// the user begins pressing the trigger.
-  public void OnGazeTriggerStart(Camera camera) {
-    // Put your reticle trigger start logic here :)
-  }
 
-  /// Called when the Cardboard trigger is finished. This is practically when
-  /// the user releases the trigger.
-  public void OnGazeTriggerEnd(Camera camera) {
+  public float fireRecharge=0.5f;
+  public void OnGazeTriggerStart(Camera camera) {
+        //Insert fire rate controls here
+        if(TimeSinceFire>fireRecharge)
+        {
+        Rigidbody Bullet = (Rigidbody)Instantiate(bullet, Cardboard.SDK.HeadPose.Position+ new Vector3(0,1,0), Cardboard.SDK.HeadPose.Orientation);
+        TimeSinceFire = 0;
+        }
+    }
+
+    /// Called when the Cardboard trigger is finished. This is practically when
+    /// the user releases the trigger.
+    public void OnGazeTriggerEnd(Camera camera) {
     // Put your reticle trigger end logic here :)
   }
 
