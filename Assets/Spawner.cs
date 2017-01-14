@@ -5,7 +5,7 @@ public class Spawner : MonoBehaviour
 {
 
     public float m_FireIntervalMin = 5f;
-    public float m_FireIntervalMax = 10;
+    public float m_FireIntervalMax = 15;
 
     public Transform m_SpawnPosition;
     public GameObject m_SpawnStuff;
@@ -25,20 +25,20 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         m_Timer += Time.deltaTime;
-        if (m_Timer >= 10 && m_Timer < 20)
-        {
-            m_FireIntervalMin = 3;
-            m_FireIntervalMax = 8;
-        }
         if (m_Timer >= 20 && m_Timer < 30)
         {
-            m_FireIntervalMin = 1;
-            m_FireIntervalMax = 5;
+            m_FireIntervalMin = 4;
+            m_FireIntervalMax = 13;
         }
-        if (m_Timer >= 30)
+        if (m_Timer >= 30 && m_Timer < 50)
+        {
+            m_FireIntervalMin = 3;
+            m_FireIntervalMax = 10;
+        }
+        if (m_Timer >= 50)
         {
             m_FireIntervalMin = 1;
-            m_FireIntervalMax = 4;
+            m_FireIntervalMax = 7;
         }
         bool canShoot = (m_LastShotTime + Random.Range(m_FireIntervalMin, m_FireIntervalMax)) < Time.time;
         //bool canShoot = (m_LastShotTime + 2f) < Time.time;
@@ -51,7 +51,6 @@ public class Spawner : MonoBehaviour
                 {
 
                     GameObject spawner = Instantiate(m_SpawnStuff, m_SpawnPosition.position, m_SpawnPosition.rotation) as GameObject;
-
                     //spawner.GetComponent<EnemySpeed>().velocity = 15;
                 }
                 //if (m_Timer >= 60)

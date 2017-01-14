@@ -23,9 +23,10 @@ public class Player : MonoBehaviour {
         }
     }
     */
-    void OnTriggerEnter(Collider other)
+	void OnTriggerEnter(Collider other)
     {
-        if(other.tag=="Enemy")
+		
+		if(other.gameObject.CompareTag("Enemy"))
         {
             --Health;
             Destroy(other.gameObject);
