@@ -8,15 +8,15 @@ public class Bullets : MonoBehaviour {
     public Rigidbody body;
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 
-	void OnCollisionEnter(Collider collider)
+	void OnCollisionEnter(Collision collider)
 	{
-		if (collider.tag == "Enemy") 
+		if (collider.gameObject.CompareTag("Enemy")) 
 		{
 			alive = false;
-			Destroy (collider.gameObject);
+			Destroy(collider.gameObject);
 		}
 	}
 
